@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
-import Credentials from 'next-auth/providers/credentials';
 import { authConfig } from './auth.config';
+import Credentials from 'next-auth/providers/credentials';
 import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import type { User } from '@/app/lib/definitions';
@@ -33,6 +33,7 @@ export const { auth, signIn, signOut } = NextAuth({
           if (passwordsMatch) return user;
         }
  
+        console.log('Invalid credentials');
         return null;
       },
     }),
